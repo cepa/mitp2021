@@ -11,4 +11,6 @@ class User(EntityMixin, Model):
         super().__init__(**kwargs)
 
     def summary(self):
-        print('\t%s, %s, %s, %s' % (self.name, self.year, self.license, self.phone))
+        print('ID: %s, Nazwa: %s, Rok: %s, Prawko: %s, Telefon: %s' % (
+            self.uuid, self.name, self.year, self.license, self.phone
+        ))

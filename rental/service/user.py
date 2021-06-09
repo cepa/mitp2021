@@ -5,7 +5,10 @@ from rental.model.user import User
 class UserService(object):
     @classmethod
     def add_user(cls, name, year, license, phone):
-        user = User(name=name, year=year, license=license, phone=phone)
+        user = User(name=name,
+                    year=year,
+                    license=license,
+                    phone=phone)
         db = JsonDatabase.get_instance()
         db.persist('user', user.uuid, user)
         db.flush()

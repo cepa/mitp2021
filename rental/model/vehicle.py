@@ -18,6 +18,11 @@ class Car(Vehicle):
         self.seats = None
         super().__init__(**kwargs)
 
+    def summary(self):
+        print('ID: %s, Marka: %s, Model: %s, Kola: %s, Rok: %s, Pojemnosc: %s, Drzwi: %s, Siedzenia: %s' % (
+            self.uuid, self.make, self.model, self.wheels, self.year, self.displacement, self.door, self.seats
+        ))
+
 
 class Motorcycle(Vehicle):
     def __init__(self, **kwargs):
