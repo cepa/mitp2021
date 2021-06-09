@@ -2,5 +2,5 @@
 
 ## Run
 ~~~
-python3 rental
+PYTHONSOURCE='.' python3 -m rental
 ~~~
