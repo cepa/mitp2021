@@ -38,10 +38,10 @@ class JsonDatabase(object):
         self.__database[type][str(key)] = object
 
     def fetch(self, type, key):
-        return self.__database[type][str(key)] if type in self.__database and str(key) is self.__database[type] else None
+        return self.__database[type][str(key)] if type in self.__database and str(key) in self.__database[type] else None
 
     def fetch_all(self, type):
-        return self.__database[type] if type in self.__database else []
+        return self.__database[type] if type in self.__database else {}
 
     def remove(self, type, key):
         if type in self.__database and str(key) in self.__database[type]:
@@ -50,3 +50,9 @@ class JsonDatabase(object):
     def remove_all(self, type):
         if type in self.__database:
             del self.__database[type]
+
+    def next_id(self):
+        if '__last_id' not in self.__database:
+            self.__database['__last_id'] = 0
+        self.__database['__last_id'] += 1
+        return self.__database['__last_id']

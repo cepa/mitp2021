@@ -5,14 +5,22 @@ from rental.model.user import User
 class UserService(object):
     @classmethod
     def add_user(cls, name, year, license, phone):
-        user = User(name=name,
+        db = JsonDatabase.get_instance()
+        user = User(uuid=db.next_id(),
+                    name=name,
                     year=year,
                     license=license,
                     phone=phone)
-        db = JsonDatabase.get_instance()
         db.persist('user', user.uuid, user)
         db.flush()
         return user
+
+    @classmethod
+    def get_user(cls, user_id):
+        record = JsonDatabase.get_instance().fetch('user', user_id)
+        if record is None:
+            raise RuntimeError("Nie znaleziono uzytkownika od ID=%s" % user_id)
+        return User(**record)
 
     @classmethod
     def get_user_list(cls):

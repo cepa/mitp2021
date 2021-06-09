@@ -8,7 +8,6 @@ class Vehicle(EntityMixin, Model):
         self.model = None
         self.wheels = None
         self.year = None
-        self.is_rented = False
         super().__init__(**kwargs)
 
 
@@ -20,9 +19,8 @@ class Car(Vehicle):
         super().__init__(**kwargs)
 
     def summary(self):
-        print('ID: %s, Marka: %s, Model: %s, Kola: %s, Rok: %s, Pojemnosc: %s, Drzwi: %s, Siedzenia: %s, Wynajety: %s' % (
-            self.uuid, self.make, self.model, self.wheels, self.year, self.displacement, self.door, self.seats,
-            'tak' if self.is_rented else 'nie'
+        print('ID: %s, Marka: %s, Model: %s, Kola: %s, Rok: %s, Pojemnosc: %s, Drzwi: %s, Siedzenia: %s' % (
+            self.uuid, self.make, self.model, self.wheels, self.year, self.displacement, self.door, self.seats
         ))
 
 
@@ -33,9 +31,8 @@ class Motorcycle(Vehicle):
         super().__init__(**kwargs)
 
     def summary(self):
-        print('ID: %s, Marka: %s, Model: %s, Rok: %s, Pojemnosc: %s, Siedzenia: %s, Wynajety: %s' % (
-            self.uuid, self.make, self.model, self.year, self.displacement, self.seats,
-            'tak' if self.is_rented else 'nie'
+        print('ID: %s, Marka: %s, Model: %s, Rok: %s, Pojemnosc: %s, Siedzenia: %s' % (
+            self.uuid, self.make, self.model, self.year, self.displacement, self.seats
         ))
 
 
@@ -45,8 +42,7 @@ class Bicycle(Vehicle):
         super().__init__(**kwargs)
 
     def summary(self):
-        print('ID: %s, Marka: %s, Model: %s, Rok: %s, Rama: %s, Wynajety: %s' % (
-            self.uuid, self.make, self.model, self.year, self.frame,
-            'tak' if self.is_rented else 'nie'
+        print('ID: %s, Marka: %s, Model: %s, Rok: %s, Rama: %s' % (
+            self.uuid, self.make, self.model, self.year, self.frame
         ))
 
