@@ -9,3 +9,6 @@ class User(EntityMixin, Model):
         self.license = None
         self.phone = None
         super().__init__(**kwargs)
+
+    def summary(self):
+        print('\t%s, %s, %s, %s' % (self.name, self.year, self.license, self.phone))
