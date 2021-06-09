@@ -1,4 +1,4 @@
-from rental.app import Application
+from rental.core.app import Application
 
 
 if __name__ == '__main__':

@@ -1,7 +1,8 @@
 from . import Model
+from .entity import EntityMixin
 
 
-class Vehicle(Model):
+class Vehicle(EntityMixin, Model):
     def __init__(self, **kwargs):
         self.make = None
         self.model = None
