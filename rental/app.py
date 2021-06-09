@@ -59,7 +59,9 @@ class Application(object):
         else:
             raise ValueError("Zly typ pojazdu: %s" % type)
         user = UserService.get_user(input('ID uzytkownika: '))
-        rental = RentalService.rent_vehicle(type, user, vehicle, None, None)
+        begin_time = input('Od kiedy (YYYY-MM-DD): ')
+        finish_time = input('Do kiedy (YYYY-MM-DD): ')
+        rental = RentalService.rent_vehicle(type, user, vehicle, begin_time, finish_time)
         rental.summary()
 
     def action_show_rental_list(self):
