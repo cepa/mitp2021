@@ -1,13 +1,11 @@
 from rental.core.database import JsonDatabase
+from rental.service.user import UserService
 
 
 class Application(object):
 
     def run(self):
         print('Wypozyczalnia v1.0')
-        db = JsonDatabase.get_instance()
-        db.dump()
-        print(db.exists('car', 123))
-        db.persist('car', 123, 'du du dupa')
-        db.dump()
-        db.flush()
+        user = UserService.add_user('Lukasz Cepowski', 1988, 'AB', '123456678')
+        user.summary()
+        JsonDatabase.get_instance().flush()

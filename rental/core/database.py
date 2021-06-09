@@ -1,6 +1,7 @@
 import os
 import json
 from rental.core import settings
+from rental.core.object import JsonEncoder
 
 
 class JsonDatabase(object):
@@ -26,7 +27,7 @@ class JsonDatabase(object):
 
     def flush(self):
         with open(self.__path, 'w') as fd:
-            json.dump(self.__database, fd)
+            json.dump(self.__database, fd, cls=JsonEncoder)
 
     def exists(self, type, key):
         return True if type in self.__database and str(key) in self.__database[type] else False

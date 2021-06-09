@@ -1,3 +1,6 @@
+import json
+
+
 class AttrMixin(object):
     def __getattr__(self, k):
         try:
@@ -44,13 +47,29 @@ class SerializableMixin(object):
         return cls.unserialize(data)
 
 
+class JsonEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, object):
+            return str(o)
+        return super().default(o)
+
+
+class JsonMixin(object):
+    def to_json(self, include=None, exclude=None, override=None):
+        return json.dumps(self.serialize(include, exclude, override), cls=JsonEncoder)
+
+    @classmethod
+    def from_json(cls, data):
+        return cls.unserialize(json.loads(data))
+
+
 class PatchableMixin(object):
     def patch(self, state=None, **kwargs):
         self.update({k: state[k] for k in state.keys() if state[k] is not None})
 
 
 # This class represents an object with flexible parameters, you can expand object properties like a dictionary.
-class FlexibleObject(dict, AttrMixin, SerializableMixin):
+class FlexibleObject(dict, AttrMixin, SerializableMixin, JsonMixin):
     def __init__(self, **kwargs):
         self.__setstate__(kwargs)
 

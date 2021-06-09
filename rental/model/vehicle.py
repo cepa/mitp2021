@@ -10,9 +10,6 @@ class Vehicle(EntityMixin, Model):
         self.year = None
         super().__init__(**kwargs)
 
-    def summary(self):
-        print(self)
-
 
 class Car(Vehicle):
     def __init__(self, **kwargs):

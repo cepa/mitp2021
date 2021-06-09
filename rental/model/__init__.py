@@ -2,4 +2,5 @@ from rental.core.object import StrictObject
 
 
 class Model(StrictObject):
-    pass
+    def summary(self):
+        print(self)
