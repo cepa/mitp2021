@@ -2,5 +2,5 @@
 
 ## Run
 ~~~
-python3 .
+python3 rental
 ~~~
