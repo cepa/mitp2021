@@ -7,4 +7,7 @@ class Application(object):
         print('Wypozyczalnia v1.0')
         db = JsonDatabase.get_instance()
         db.dump()
+        print(db.exists('car', 123))
+        db.persist('car', 123, 'du du dupa')
+        db.dump()
         db.flush()
