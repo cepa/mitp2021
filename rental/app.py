@@ -8,6 +8,7 @@ Akcje:
     2  - Dodaj samochod do bazy
     11 - Lista uzytkownikow
     12 - Lista samochodow
+    99 - Wyjscie
 '''
 
 class Application(object):
@@ -58,6 +59,8 @@ class Application(object):
             choice = input('Wpisz numer: ')
             if choice in actions:
                 actions[choice]()
+            elif choice == '99':
+                return False
             else:
                 print('\nNie ma takiej akcji, sprobuj ponownie.')
                 return True
@@ -68,7 +71,6 @@ class Application(object):
         except RuntimeError as err:
             print("Uwaga blad: {}".format(err))
             return True
-        return False if 'tak' in input('\nWpisz tak jezeli chcesz wyjsc z programu: ') else True
 
     def run(self):
         print('Wypozyczalnia v1.0')
